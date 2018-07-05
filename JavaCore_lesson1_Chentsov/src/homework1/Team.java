@@ -1,4 +1,4 @@
-package JavaCore1_L1_Chentsov;
+package homework1;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ public class Team {
 
     private String name;
     private List<Member> members;
-
 
     public List<Member> getMembers() {
         return members;
@@ -16,12 +15,10 @@ public class Team {
         return name;
     }
 
-
     public Team(String name, List<Member> members) {
         this.name = name;
         this.members = members;
     }
-
 
     public void showAllMembers() {
         System.out.println("Team " + name + " has the following members:");
@@ -29,7 +26,6 @@ public class Team {
             System.out.println(member);
         }
     }
-
 
     public void showResults() {
         System.out.println("The following members in team " + name + " managed to pass the course:");

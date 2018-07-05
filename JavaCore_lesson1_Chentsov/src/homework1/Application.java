@@ -1,9 +1,9 @@
-package JavaCore1_L1_Chentsov;
+package homework1;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Helper {
+public class Application {
     public static void main(String[] args) {
         List<Member> members = new ArrayList<>();
         members.add(new Member("Player_One"));
