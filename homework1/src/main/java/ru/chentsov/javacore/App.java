@@ -1,9 +1,18 @@
-package homework1;
+package ru.chentsov.javacore;
+
+import ru.chentsov.javacore.homework1.Course;
+import ru.chentsov.javacore.homework1.Member;
+import ru.chentsov.javacore.homework1.Team;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Application {
+/**
+ * Hello world!
+ *
+ */
+public class App {
+
     public static void main(String[] args) {
         List<Member> members = new ArrayList<>();
         members.add(new Member("Player_One"));
@@ -18,4 +27,5 @@ public class Application {
         team.showAllMembers();
         team.showResults();
     }
+
 }

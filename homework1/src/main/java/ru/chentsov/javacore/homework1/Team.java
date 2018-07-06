@@ -1,7 +1,10 @@
-package homework1;
+package ru.chentsov.javacore.homework1;
 
 import java.util.List;
 
+/**
+ * @author Chentsov Evgenii
+ */
 public class Team {
 
     private String name;
@@ -35,4 +38,5 @@ public class Team {
             }
         }
     }
+
 }

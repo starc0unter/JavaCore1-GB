@@ -1,5 +1,8 @@
-package homework1;
+package ru.chentsov.javacore.homework1;
 
+/**
+ * @author Chentsov Evgenii
+ */
 public class Member {
 
     private boolean passedTheCourse;
@@ -26,4 +29,5 @@ public class Member {
     public String toString() {
         return name;
     }
+
 }

@@ -1,7 +1,10 @@
-package homework1;
+package ru.chentsov.javacore.homework1;
 
 import java.util.Random;
 
+/**
+ * @author Chentsov Evgenii
+ */
 public class Course {
 
     private int[] obstacles;
@@ -31,6 +34,5 @@ public class Course {
             }
         }
     }
-
 
 }
