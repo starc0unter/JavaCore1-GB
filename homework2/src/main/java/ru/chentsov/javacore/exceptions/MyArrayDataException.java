@@ -5,17 +5,17 @@ package ru.chentsov.javacore.exceptions;
  */
 public class MyArrayDataException extends Exception {
 
-    private int i;
-    private int j;
+    private int rows;
+    private int columns;
 
-    public MyArrayDataException(int i, int j) {
-        this.i = i;
-        this.j = j;
+    public MyArrayDataException(int rows, int columns) {
+        this.rows = rows;
+        this.columns = columns;
     }
 
     @Override
     public String getMessage() {
-        return "There is a problem with the data type in position [" + i + "][" + j + "].";
+        return "There is a problem with the data type in position [" + columns + "][" + rows + "].";
     }
 
 }

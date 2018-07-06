@@ -37,7 +37,8 @@ public class App
 
     private static int getSum(String[][] a) throws MyArraySizeException, MyArrayDataException {
         int requiredSize = 4;
-        if (a.length != requiredSize || a[0].length != requiredSize) {
+        boolean hasCorrectSize = (a.length == requiredSize && a[0].length == requiredSize);
+        if (!hasCorrectSize) {
             throw new MyArraySizeException();
         }
 
