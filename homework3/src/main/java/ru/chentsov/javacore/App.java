@@ -56,9 +56,9 @@ public class App
         phoneBook.add("Симонов", "+00484563223");
 
         for (String lastName : phoneBook.getAllLastNames()) {
-            phoneBook.printPhoneByPerson(lastName);
+            phoneBook.printPhone(lastName);
         }
-        phoneBook.printPhoneByPerson("Харитонов");
+        phoneBook.printPhone("Харитонов");
     }
 
 }

@@ -11,25 +11,24 @@ import java.util.*;
  */
 public class PhoneBook {
 
-    private Map<String, List<String>> phoneBook = new HashMap<>();
+    private Map<String, List<String>> phoneBookMap = new HashMap<>();
 
     public List<String> get(String lastName) {
-        if (phoneBook.keySet().contains(lastName)) return phoneBook.get(lastName);
-        else return null;
+        return phoneBookMap.get(lastName);
     }
 
     public void add(String lastName, String phoneNumber) {
-        if (!phoneBook.keySet().contains(lastName)) {
-            phoneBook.put(lastName, new ArrayList<>());
+        if (!phoneBookMap.keySet().contains(lastName)) {
+            phoneBookMap.put(lastName, new ArrayList<>());
         }
-        phoneBook.get(lastName).add(phoneNumber);
+        phoneBookMap.get(lastName).add(phoneNumber);
     }
 
     public Set<String> getAllLastNames() {
-        return phoneBook.keySet();
+        return phoneBookMap.keySet();
     }
 
-    public void printPhoneByPerson(String lastName) {
+    public void printPhone(String lastName) {
         List<String> phoneNumbers = this.get(lastName);
         if (phoneNumbers != null) {
             System.out.print("Phone numbers for " + lastName + ": ");
