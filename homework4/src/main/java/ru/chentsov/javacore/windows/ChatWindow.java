@@ -27,11 +27,26 @@ public class ChatWindow extends JFrame {
     private JMenuItem menuItem;
 
     public ChatWindow() {
+        setTitle ("Chat Window");
+        setDefaultCloseOperation (WindowConstants.EXIT_ON_CLOSE);
+        setBounds (300 , 300 , 400 , 300);
+        setMinimumSize(new Dimension(400, 300));
+
+        addViewMessageArea();
+        addSendMessagePanel();
+        addMenuBar();
+    }
+
+    private void addViewMessageArea() {
         viewMessageArea = new JTextArea();
         viewMessageArea.setLineWrap(true);
         viewMessageArea.setEditable(false);
         viewMessageScroll = new JScrollPane(viewMessageArea);
 
+        add(viewMessageScroll, BorderLayout.CENTER);
+    }
+
+    private void addSendMessagePanel() {
         sendMessageField = new JTextField(DEFAULT_MESSAGE_TEXT, 27);
         sendMessageField.addFocusListener(getMessageSendFocusListener());
         sendMessageField.addActionListener(e -> sendMessage());
@@ -46,6 +61,10 @@ public class ChatWindow extends JFrame {
         sendMessagePanel.add(sendMessageScroll, BorderLayout.CENTER);
         sendMessagePanel.add(sendMessageButton, BorderLayout.EAST);
 
+        getContentPane().add(BorderLayout.SOUTH, sendMessagePanel);
+    }
+
+    private void addMenuBar() {
         menuBar = new JMenuBar();
         menu = new JMenu("Window");
         menuBar.add(menu);
@@ -58,13 +77,7 @@ public class ChatWindow extends JFrame {
         menuItem.addActionListener(e -> System.exit(0));
         menu.add(menuItem);
 
-        setTitle ("Chat Window");
-        add(viewMessageScroll, BorderLayout.CENTER);
         add(menuBar, BorderLayout.NORTH);
-        getContentPane().add(BorderLayout.SOUTH, sendMessagePanel);
-        setDefaultCloseOperation (WindowConstants.EXIT_ON_CLOSE);
-        setBounds (300 , 300 , 400 , 300);
-        setMinimumSize(new Dimension(400, 300));
     }
 
     private void sendMessage() {
