@@ -15,16 +15,18 @@ import java.awt.event.*;
 public class ChatWindow extends JFrame {
 
     private final static String DEFAULT_MESSAGE_TEXT = "Write a message... ";
-    private JScrollPane viewMessageScroll;
-    private JTextArea viewMessageArea;
-    private JPanel sendMessagePanel;
-    private JButton sendMessageButton;
-    private JScrollPane sendMessageScroll;
-    private JTextField sendMessageField;
 
-    private JMenuBar menuBar;
-    private JMenu menu;
-    private JMenuItem menuItem;
+    private final JTextArea viewMessageArea = new JTextArea();
+    private final JScrollPane viewMessageScroll  = new JScrollPane(viewMessageArea);
+    private final JPanel sendMessagePanel = new JPanel(new BorderLayout());
+    private final JButton sendMessageButton = new JButton("Send");
+    private final JTextField sendMessageField = new JTextField(DEFAULT_MESSAGE_TEXT, 27);
+    private final JScrollPane sendMessageScroll = new JScrollPane(sendMessageField);
+
+    private final JMenuBar menuBar = new JMenuBar();
+    private final JMenu menu = new JMenu("Window");
+    private final JMenuItem menuItemClear = new JMenuItem("Clear");
+    private final JMenuItem menuItemExit = new JMenuItem("Exit");
 
     public ChatWindow() {
         setTitle ("Chat Window");
@@ -38,26 +40,20 @@ public class ChatWindow extends JFrame {
     }
 
     private void addViewMessageArea() {
-        viewMessageArea = new JTextArea();
         viewMessageArea.setLineWrap(true);
         viewMessageArea.setEditable(false);
-        viewMessageScroll = new JScrollPane(viewMessageArea);
 
         add(viewMessageScroll, BorderLayout.CENTER);
     }
 
     private void addSendMessagePanel() {
-        sendMessageField = new JTextField(DEFAULT_MESSAGE_TEXT, 27);
         sendMessageField.addFocusListener(getMessageSendFocusListener());
         sendMessageField.addActionListener(e -> sendMessage());
 
-        sendMessageScroll = new JScrollPane(sendMessageField);
         sendMessageScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        sendMessageButton = new JButton("Send");
         sendMessageButton.addActionListener(e -> sendMessage());
 
-        sendMessagePanel = new JPanel(new BorderLayout());
         sendMessagePanel.add(sendMessageScroll, BorderLayout.CENTER);
         sendMessagePanel.add(sendMessageButton, BorderLayout.EAST);
 
@@ -65,17 +61,13 @@ public class ChatWindow extends JFrame {
     }
 
     private void addMenuBar() {
-        menuBar = new JMenuBar();
-        menu = new JMenu("Window");
         menuBar.add(menu);
 
-        menuItem = new JMenuItem("Clear");
-        menuItem.addActionListener(e -> viewMessageArea.setText(""));
-        menu.add(menuItem);
+        menuItemClear.addActionListener(e -> viewMessageArea.setText(""));
+        menu.add(menuItemClear);
 
-        menuItem = new JMenuItem("Exit");
-        menuItem.addActionListener(e -> System.exit(0));
-        menu.add(menuItem);
+        menuItemExit.addActionListener(e -> System.exit(0));
+        menu.add(menuItemExit);
 
         add(menuBar, BorderLayout.NORTH);
     }
@@ -92,12 +84,12 @@ public class ChatWindow extends JFrame {
     private FocusListener getMessageSendFocusListener() {
         return new FocusListener() {
             @Override
-            public void focusGained(FocusEvent e) {
+            public void focusGained(final FocusEvent e) {
                 if (DEFAULT_MESSAGE_TEXT.equals(sendMessageField.getText()))  sendMessageField.setText("");
             }
 
             @Override
-            public void focusLost(FocusEvent e) {
+            public void focusLost(final FocusEvent e) {
                 if (sendMessageField.getText().isEmpty()) sendMessageField.setText(DEFAULT_MESSAGE_TEXT);
             }
         };
