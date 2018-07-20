@@ -3,7 +3,7 @@ package ru.chentsov.javacore;
 /**
  * @author Chentsov Evgenii
  */
-public class TestArray implements Runnable {
+public final class TestArray implements Runnable {
 
     private final float[] array;
     private final int startIndex;

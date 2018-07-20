@@ -1,6 +1,6 @@
 package ru.chentsov.javacore;
 
-public class App
+public final class App
 {
 
     private static final int SIZE = 10_000_000;
