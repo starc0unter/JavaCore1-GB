@@ -12,14 +12,14 @@ public final class Session {
 
     private static final String END_SESSION_MESSAGE =  "end session";
 
-    public void startSession(Scanner in, PrintWriter out, String clientName) {
+    public static void startSession(Scanner in, PrintWriter out, String clientName) {
         final Thread sendMessageThread = new Thread(() -> sendMessages(out, clientName));
         sendMessageThread.setDaemon(true);
         sendMessageThread.start();
         listenForMessages(in);
     }
 
-    private void sendMessages(final PrintWriter out, final String senderName) {
+    private static void sendMessages(final PrintWriter out, final String senderName) {
         try (Scanner messageScanner = new Scanner(System.in)) {
             String clientMessage;
             while (!END_SESSION_MESSAGE.equals(clientMessage = messageScanner.nextLine())) {
@@ -31,9 +31,9 @@ public final class Session {
         }
     }
 
-    private void listenForMessages(final Scanner in) {
+    private static void listenForMessages(final Scanner in) {
         while (in.hasNext()) {
-            String serverMessage = in.nextLine();
+            final String serverMessage = in.nextLine();
             if (END_SESSION_MESSAGE.equals(serverMessage)) {
                 return;
             }

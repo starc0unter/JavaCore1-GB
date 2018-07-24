@@ -11,26 +11,26 @@ import java.util.Scanner;
  */
 public final class Server {
 
-    private int port;
+    private final int port;
 
     public Server(final int serverPort) {
         this.port = serverPort;
     }
 
     public static void main(String[] args) {
-        Server server = new Server(8841);
+        final Server server = new Server(8841);
         server.initServer(server.port);
     }
 
     public void initServer(final int serverPort) {
         try (
-                ServerSocket serverSocket = new ServerSocket(serverPort);
-                Socket socket = serverSocket.accept();
-                Scanner socketInputScanner = new Scanner(socket.getInputStream());
+                final ServerSocket serverSocket = new ServerSocket(serverPort);
+                final Socket socket = serverSocket.accept();
+                final Scanner socketInputScanner = new Scanner(socket.getInputStream());
                 PrintWriter socketOutputWriter = new PrintWriter(socket.getOutputStream())
         ) {
             System.out.println("Server is up and client is connected");
-            new Session().startSession(socketInputScanner, socketOutputWriter, "Server");
+            Session.startSession(socketInputScanner, socketOutputWriter, "Server");
         } catch (IOException e) {
             e.printStackTrace();
         }

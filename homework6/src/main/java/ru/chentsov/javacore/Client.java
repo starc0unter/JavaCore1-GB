@@ -19,17 +19,17 @@ public final class Client {
     }
 
     public static void main(String[] args) {
-        Client client = new Client("localhost", 8841);
+        final Client client = new Client("localhost", 8841);
         client.connectToServer(client.serverAddress, client.serverPort);
     }
 
     public void connectToServer(final String serverAddress, final int serverPort) {
         try (
-                Socket socket = new Socket(serverAddress, serverPort);
-                Scanner socketInputScanner = new Scanner(socket.getInputStream());
-                PrintWriter socketOutputWriter = new PrintWriter(socket.getOutputStream())
+                final Socket socket = new Socket(serverAddress, serverPort);
+                final Scanner socketInputScanner = new Scanner(socket.getInputStream());
+                final PrintWriter socketOutputWriter = new PrintWriter(socket.getOutputStream())
         ) {
-            new Session().startSession(socketInputScanner, socketOutputWriter, "Client");
+            Session.startSession(socketInputScanner, socketOutputWriter, "Client");
         } catch (IOException e) {
             System.out.println("no server found");
         }
